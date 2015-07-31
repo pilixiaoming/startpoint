@@ -1,5 +1,6 @@
 
 ********************************************************************************
+1. 启动tomcat时，自动把jar包导入WEB-INF的lib文件夹下
 You need to add the "Maven Dependency" in the Deployement Assembly
 
 right click on your project and choose properties.
@@ -9,3 +10,10 @@ click on "Java Build Path Entries"
 select Maven Dependencies"
 click Finish.
 That it!! rebuild and deploy again
+
+********************************************************************************
+2. eclipse装tomcat
+下载tomcat，根据RUNNING.txt搭系统环境
+在window-preference-server-running...environment下加入tomcat根目录
+
+********************************************************************************

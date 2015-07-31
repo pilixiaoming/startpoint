@@ -51,18 +51,26 @@
 			<version>1</version>
 		</dependency>
 
+		<!-- ******Google lib****** -->
 		<dependency>
 			<groupId>com.google.collections</groupId>
 			<artifactId>google-collections</artifactId>
 			<version>1.0</version>
 		</dependency>
 
+		<!-- jstl tablib on jsp -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
 
+		<!--Validation -->
+		<dependency>
+			<groupId>net.sf.oval</groupId>
+			<artifactId>oval</artifactId>
+			<version>1.84</version>
+		</dependency>
 
 	</dependencies>
 </project>

@@ -13,7 +13,7 @@
 	${user.value.name }
 	</c:forEach>
 	<sf:form method="post" modelAttribute="user">
-		name: <sf:input path="name" />
+		name: <sf:input path="name" /> <sf:errors path="name"/>
 		<br />
 		<input type="submit" value="gogogo">
 	</sf:form>

@@ -4,6 +4,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,7 +48,16 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String adda(User user) {
+	public String addSubmit(@Validated User user, BindingResult br) {
+		if (br.hasErrors()) {
+			return "user/add";
+		}
+		users.put(user.getName(), user);
+		return "redirect:/user/users";
+	}
+	
+	@RequestMapping(value = "/show", method = RequestMethod.POST)
+	public String show(User user) {
 		users.put(user.getName(), user);
 		return "redirect:/user/users";
 	}
