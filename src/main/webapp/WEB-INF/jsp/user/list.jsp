@@ -8,13 +8,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+Hello ${loginUser.name }
 <a href="add">add user</a>
+
+<br/>
 	<c:forEach items="${users}" var="user">
 	<a href="${user.value.name }">See user details</a>
 	---${user.value.name } 
 	---${user.value.email }
 	---${user.value.title }
 	<a href="${user.value.name }/update">Update user</a>
+	<a href="${user.value.name }/delete">Delete user</a>
 	 <br/>
 	</c:forEach>
 </body>

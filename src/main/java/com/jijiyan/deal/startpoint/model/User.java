@@ -7,14 +7,16 @@ public class User {
 	@NotNull(message = "用户名不为空哥们")
 	@NotEmpty(message = "用户名不为空哥们")
 	private String name;
+	private String password;
 	private String email;
 	private String title;
 
 	public User() {
 	}
 
-	public User(String name, String email, String title) {
+	public User(String name, String password, String email, String title) {
 		this.name = name;
+		this.password = password;
 		this.email = email;
 		this.title = title;
 	}
@@ -41,5 +43,13 @@ public class User {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

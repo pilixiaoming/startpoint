@@ -9,17 +9,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:forEach items="${users}" var="user">
-	${user.value.name } <br/>
-	${user.value.email } <br/>
-	${user.value.title } <br/>
-	</c:forEach>
-	<sf:form method="post" modelAttribute="user">
-		name: <sf:input path="name" /> <sf:errors path="name"/><br />
-		email: <sf:input path="email" /> <sf:errors path="email"/><br />
-		title: <sf:input path="title" /> <sf:errors path="title"/>
-		<br />
-		<input type="submit" value="gogogo">
-	</sf:form>
+	<form action="user/login" method="post">
+	Username: <input type="text" name = "name"><br/>
+	Password: <input type="text" name = "password"><br/>
+	<input type="submit" value="来试试登录吧！">
+	</form>
 </body>
 </html>
