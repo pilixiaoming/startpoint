@@ -14,8 +14,10 @@
 	${user.value.email } <br/>
 	${user.value.title } <br/>
 	</c:forEach>
-	<sf:form method="post" modelAttribute="user">
+	<sf:form method="post" modelAttribute="user" >
 		name: <sf:input path="name" /> <sf:errors path="name"/>
+		email: <sf:input path="email" />
+		title: <sf:input path="title" />
 		<br />
 		<input type="submit" value="gogogo">
 	</sf:form>
