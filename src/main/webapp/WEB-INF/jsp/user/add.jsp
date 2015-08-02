@@ -14,10 +14,11 @@
 	${user.value.email } <br/>
 	${user.value.title } <br/>
 	</c:forEach>
-	<sf:form method="post" modelAttribute="user">
+	<sf:form method="post" modelAttribute="user" enctype="multipart/form-data" >
 		name: <sf:input path="name" /> <sf:errors path="name"/><br />
 		email: <sf:input path="email" /> <sf:errors path="email"/><br />
-		title: <sf:input path="title" /> <sf:errors path="title"/>
+		title: <sf:input path="title" /> <sf:errors path="title"/><br />
+		Attach: <input type="file" name="file"/><br/>
 		<br />
 		<input type="submit" value="gogogo">
 	</sf:form>

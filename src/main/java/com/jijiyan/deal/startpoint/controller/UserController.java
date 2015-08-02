@@ -1,10 +1,13 @@
 package com.jijiyan.deal.startpoint.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.common.collect.Maps;
 import com.jijiyan.deal.startpoint.model.User;
@@ -54,11 +59,15 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addSubmit(@Validated User user, BindingResult br) {
-		
+	public String addSubmit(@Validated User user, BindingResult br, MultipartFile file, HttpServletRequest req) throws IOException {
+		String realPath = req.getSession().getServletContext().getRealPath("/res/upload");
+		System.out.println(realPath);
+		File f = new File(realPath+"/"+file.getOriginalFilename());
+		FileUtils.copyInputStreamToFile(file.getInputStream(), f);
 		if (br.hasErrors()) {
 			return "user/add";
 		}
+		System.out.println(file.getName() + ", " + file.getOriginalFilename() + ", " + file.getContentType());
 		users.put(user.getName(), user);
 		return "redirect:/user/users";
 	}
@@ -67,6 +76,13 @@ public class UserController {
 	public String show(@PathVariable String name, Model model) {
 		model.addAttribute(users.get(name));
 		return "user/show";
+	}
+	
+	//return json 
+	@RequestMapping(value = "/{name}", method = RequestMethod.GET,params="jjj")
+	@ResponseBody
+	public User show(@PathVariable String name) {
+		return users.get(name);
 	}
 	
 	@RequestMapping(value = "/{name}/update", method = RequestMethod.GET)
@@ -99,10 +115,10 @@ public class UserController {
 		return "redirect:/user/users";
 	}
 	
-	@ExceptionHandler(value={Exception.class})
-	public String handluerException(Exception e, HttpServletRequest req){
-		req.setAttribute("e", e);
-		return "error";
-	}
+//	@ExceptionHandler(value={Exception.class})
+//	public String handluerException(Exception e, HttpServletRequest req){
+//		req.setAttribute("e", e);
+//		return "error";
+//	}
 	
 }

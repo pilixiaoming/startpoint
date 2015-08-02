@@ -13,6 +13,9 @@
 	<context:component-scan base-package="com.jijiyan.deal.startpoint.controller" />
 	<mvc:annotation-driven />
 
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+
+
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -21,4 +24,18 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<!-- 文件上传 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="5000000" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">error</prop>
+			</props>
+		</property>
+	</bean>
 </beans>
