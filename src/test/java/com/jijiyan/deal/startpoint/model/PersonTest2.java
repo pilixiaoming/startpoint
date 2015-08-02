@@ -16,13 +16,12 @@ public class PersonTest2 {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("startpointunit");
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
-		em.persist(new Person("帅呆了", new Date(), Gender.FEMALE, "I am good"));
+		em.persist(new Person("帅呆了1", new Date(), Gender.FEMALE, "I am good"));
 		em.getTransaction().commit();
 		em.close();
 		factory.close();
 		
 	}
-	
 	
 	@Test
 	public void findPerson() {

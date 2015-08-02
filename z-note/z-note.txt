@@ -17,3 +17,7 @@ That it!! rebuild and deploy again
 在window-preference-server-running...environment下加入tomcat根目录
 
 ********************************************************************************
+
+maven update change java version
+http://stackoverflow.com/questions/14804945/maven-build-path-specifies-execution-environment-j2se-1-5-even-though-i-chang
+********************************************************************************
