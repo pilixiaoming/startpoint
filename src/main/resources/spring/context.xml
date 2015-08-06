@@ -15,9 +15,48 @@
            http://jax-ws.dev.java.net/spring/core
            http://jax-ws.dev.java.net/spring/core.xsd">
 
+	<context:component-scan base-package="com.jijiyan.deal.startpoint" />
+
 	<!-- bean definitions here -->
 	<bean id="user" class="com.jijiyan.deal.startpoint.model.User">
 		<property name="name" value="yuandaxia" />
 	</bean>
-	
+
+	<bean id="validator" class="net.sf.oval.Validator" />
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="startpointunit" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.jijiyan.deal.startpoint.model" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+			</bean>
+		</property>
+
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/startpoint" />
+		<property name="username" value="root" />
+		<property name="password" value="123456" />
+	</bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- Transaction manager for JPA -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
 </beans>

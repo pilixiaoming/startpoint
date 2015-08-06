@@ -10,17 +10,18 @@ import javax.persistence.Query;
 
 import org.junit.Test;
 
-public class PersonTest2 {
+import com.jijiyan.deal.startpoint.test.BaseUnitTest;
+
+public class PersonTestBackUp extends BaseUnitTest{
 	@Test
 	public void savePerson() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("startpointunit");
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
-		em.persist(new Person("帅呆了1", new Date(), Gender.FEMALE, "I am good"));
+		em.persist(new Person("帅呆了!!!", new Date(), Gender.FEMALE, "I am good"));
 		em.getTransaction().commit();
 		em.close();
 		factory.close();
-		
 	}
 	
 	@Test
